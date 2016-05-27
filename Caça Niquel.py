@@ -1,12 +1,16 @@
 import random
-ap1='(@)'
-ap2='(#)'
-ap3='(%)'
-ap4='(&)'
-ap5='(7)'
-ap6='(A)'
-ap7='{$}'
-ap8='{*}'
+
+def gerar_opcoes(apostas,pesos):
+    opcoes = []
+    for i in range(len(apostas)):
+        for peso in range(pesos[i]):
+            opcoes.append(apostas[i])
+    return opcoes
+
+
+apostas = ['(@)','(#)','(%)','(&)','(7)','(A)','{$}','{*}']
+pesos = [3,3,3,3,3,3,1,1]
+
 moedas=7
 iniciar='sim'
 print('##########BEM VINDO AO CAÇA NIQUEL!##########')
@@ -16,9 +20,12 @@ while(iniciar=='sim')and(moedas>0):
     if(tipoaposta=='par')or(tipoaposta=='trinca'):
         valoraposta=int(input('Quanto deseja apostar? '))
         moedas=moedas-valoraposta
-        sort1=random.choice([ap1,ap2,ap3,ap4,ap5,ap6,ap1,ap2,ap3,ap4,ap5,ap6,ap1,ap2,ap3,ap4,ap5,ap6,ap7,ap8])
-        sort2=random.choice([ap1,ap2,ap3,ap4,ap5,ap6,ap1,ap2,ap3,ap4,ap5,ap6,ap1,ap2,ap3,ap4,ap5,ap6,ap7,ap8])
-        sort3=random.choice([ap1,ap2,ap3,ap4,ap5,ap6,ap1,ap2,ap3,ap4,ap5,ap6,ap1,ap2,ap3,ap4,ap5,ap6,ap7,ap8])
+        opcoes = gerar_opcoes(apostas,pesos)
+
+        sort1=random.choice(opcoes)
+        sort2=random.choice(opcoes)
+        sort3=random.choice(opcoes)
+        
         if(sort1==sort2) and (sort2==sort3) and (tipoaposta=='trinca'):
             moedas=moedas+50
             print(sort1, sort2, sort3)
