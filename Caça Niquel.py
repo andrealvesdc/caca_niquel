@@ -11,14 +11,16 @@ def gerar_opcoes(apostas,pesos):
 apostas = ['(@)','(#)','(%)','(&)','(7)','(A)','{$}','{*}']
 pesos = [3,3,3,3,3,3,1,1]
 
-moedas=7
+moedas=10
 iniciar='sim'
 print('##########BEM VINDO AO CAÇA NIQUEL!##########')
-print('Seu saldo inicial é de 7 moedas, boa sorte!')
+print('Seu saldo inicial é de 10 moedas, boa sorte!')
 while(iniciar=='sim')and(moedas>0):
     tipoaposta=str.lower(input('Gostaria de apostar em: Par ou Trinca? '))
     if(tipoaposta=='par')or(tipoaposta=='trinca'):
         valoraposta=int(input('Quanto deseja apostar? '))
+        while(valoraposta>moedas)or(valoraposta<=0):
+            valoraposta=int(input('Informe uma aposta valida: '))
         moedas=moedas-valoraposta
         opcoes = gerar_opcoes(apostas,pesos)
 
@@ -42,38 +44,38 @@ while(iniciar=='sim')and(moedas>0):
             moedas=moedas+15
             print(sort1, sort2, sort3)
             print('você ganhou 15 moedas, fez um par na combinação',sort2, sort3,'seu saldo é ',moedas,'moedas')
-        elif(sort1==ap7):
+        elif(sort1==apostas[6]):
             moedas=moedas+5
             print(sort1, sort2, sort3)
-            print('você ganhou 5 moedas de bonus com o',ap7,'sifrão da prosperidade seu saldo é ',moedas,'moedas')
-        elif(sort2==ap7):
+            print('você ganhou 5 moedas de bonus com o',apostas[6],'sifrão da prosperidade seu saldo é ',moedas,'moedas')
+        elif(sort2==apostas[6]):
             moedas=moedas+5
             print(sort1, sort2, sort3)
-            print('você ganhou 5 moedas de bonus com o',ap7,'sifrão da prosperidade seu saldo é ',moedas,'moedas')
-        elif(sort3==ap7):
+            print('você ganhou 5 moedas de bonus com o',apostas[6],'sifrão da prosperidade seu saldo é ',moedas,'moedas')
+        elif(sort3==apostas[6]):
             moedas=moedas+5
             print(sort1, sort2, sort3)
-            print('você ganhou 5 moedas de bonus com o',ap7,'sifrão da prosperidade seu saldo é ',moedas,'moedas')
-        elif(sort1==ap8):
+            print('você ganhou 5 moedas de bonus com o',apostas[6],'sifrão da prosperidade seu saldo é ',moedas,'moedas')
+        elif(sort1==apostas[7]):
             moedas=moedas+5
             print(sort1, sort2, sort3)
-            print('você ganhou 5 moedas de bonus com a',ap8,'estrela da sorte seu saldo é ',moedas,'moedas')
-        elif(sort2==ap8):
+            print('você ganhou 5 moedas de bonus com a',apostas[7],'estrela da sorte seu saldo é ',moedas,'moedas')
+        elif(sort2==apostas[7]):
             moedas=moedas+5
             print(sort1, sort2, sort3)
-            print('você ganhou 5 moedas de bonus com a',ap8,'estrela da sorte seu saldo é ',moedas,'moedas')
-        elif(sort3==ap8):
+            print('você ganhou 5 moedas de bonus com a',apostas[7],'estrela da sorte seu saldo é ',moedas,'moedas')
+        elif(sort3==apostas[7]):
             moedas=moedas+5
             print(sort1, sort2, sort3)
-            print('você ganhou 5 moedas de bonus com a',ap8,'estrela da sorte seu saldo é ',moedas,'moedas')
-        elif(sort1==ap7)and(sort2==ap7)and(sort3==ap7):
+            print('você ganhou 5 moedas de bonus com a',apostas[7],'estrela da sorte seu saldo é ',moedas,'moedas')
+        elif(sort1==apostas[6])and(sort2==apostas[6])and(sort3==apostas[6]):
             moedas=moedas+65
             print(sort1, sort2, sort3)
-            print('você fez uma trinca com o',ap7,'sifrão da prosperidade, ganhou 50 moedas de premio e mais 15 moedas de bonus, seu saldo é ',moedas,'moedas')
-        elif(sort1==ap8)and(sort2==ap8)and(sort3==ap8):
+            print('você fez uma trinca com o',apostas[6],'sifrão da prosperidade, ganhou 50 moedas de premio e mais 15 moedas de bonus, seu saldo é ',moedas,'moedas')
+        elif(sort1==apostas[7])and(sort2==apostas[7])and(sort3==apostas[7]):
             moedas=moedas+50
             print(sort1, sort2, sort3)
-            print('você fez uma trinca com a',ap8,'estrela da sorte,ganhou 50 moedas de premio e mais 15 moedas de bonus, seu saldo é ',moedas,'moedas')
+            print('você fez uma trinca com a',apostas[7],'estrela da sorte,ganhou 50 moedas de premio e mais 15 moedas de bonus, seu saldo é ',moedas,'moedas')
         elif(sort1!=sort2)and(sort2!=sort3)and(sort1!=sort3):
             print(sort1, sort2, sort3)
             print('infelizmente você não acertou sua aposta, seu saldo é ',moedas,'moedas')
