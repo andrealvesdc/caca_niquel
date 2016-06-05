@@ -49,18 +49,18 @@ moedas = 10
 menu_cn()
 print("")
 
-iniciar = input("Escolha uma opção:")
+iniciar = input("Escolha uma opção: ")
 
 while iniciar != "1" and iniciar !="2":
     print("opção invalida, escolha uma opção valida")
     menu_cn()
-    iniciar = input("Escolha uma opção:")
+    iniciar = input("Escolha uma opção: ")
     
 while iniciar == "2":
     helP()
     menu_cn()
     print("")
-    iniciar = input("Escolha uma opção:")
+    iniciar = input("Escolha uma opção: ")
     
 if iniciar == "1":
     print("")
@@ -70,8 +70,13 @@ if iniciar == "1":
         tipoaposta=str.lower(input('Gostaria de apostar em: Par ou Trinca? '))
         
         if(tipoaposta=='par')or(tipoaposta=='trinca'):
-            valoraposta=int(input('Quanto deseja apostar? '))
-            
+            valoraposta=0
+            while valoraposta==0:
+                try:
+                    valoraposta=int(input('Quanto deseja apostar? '))
+                except ValueError:
+                    print("Informe um valor valido")
+                
             while(valoraposta>moedas)or(valoraposta<=0):
                 print("Atenção você tem %i moedas!" % moedas)
                 valoraposta=int(input('Faça uma aposta valida: '))
