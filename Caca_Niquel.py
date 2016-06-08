@@ -1,4 +1,5 @@
 import random
+import time
 import verificar_apostas
 
 def menu_cn():
@@ -6,6 +7,8 @@ def menu_cn():
     print("       BEM VINDO AO CAÇA NIQUEL      ")
     print(" ----------------------------------- ")
     print("    [1] JOGAR      |   [2] HELP      ")
+    print(" ----------------------------------- ")
+    print("              [3]SAIR                ")
     print(" ----------------------------------- ")
 
 def helP():
@@ -17,9 +20,9 @@ def helP():
     print("Ao iniciar o jogo você  já começa com 10 moedas")
     print("                                               ")
     print("em seguida você  podera escolhe se quer apostar")
-    print("em  PAR ou TRINCAR, se  você  escolher  PAR, só")
+    print("em TRINCA ou PAR, se  você  escolher  PAR, só")
     print("ganhara  moedas se  aparecer um par dos  mesmos") 
-    print("elementos na tela, Se escolher TRINCA só ganhara")
+    print("elementos na tela,Se escolher TRINCA só ganhara")
     print("moedas se aparecer um trio dos mesmos elementos")
     print("                                               ")
     print("depois  você vai dizer o quanto quer apostar, o")
@@ -28,13 +31,18 @@ def helP():
     print("                                               ")
     print("Se você perder, sera descontado das suas moedas")
     print("a quantia que você  apostou,se for bem sucedido")
-    print("no  sorteio  podera ganhar  5 moedas, 15 moedas")
+    print("no  sorteio podera ganhar  10 moedas, 15 moedas")
     print("ou 50 moedas. vai depender do resultado.       ")
     print("Se no  sorteio aparecer um [$] ou uma [☆] você")
-    print("ganhara 5 moedas automatimente.                ")
+    print("ganhara 10 moedas de bonus automatimente."      )
+    print("                                               ")
+    print("os pontos são o valor do premio em moedas vezes")
+    print("o valor de moedas apostado.                    ")
     print("-----------------------------------------------")
-    
-    
+
+apostas = ['[☺]','[♥]','[♬]','[☀]','[☎]','[☂]','[$]']
+pesos = [2,2,2,2,2,2,1]
+       
 def gerar_opcoes(apostas,pesos):
     opcoes = []
     for i in range(len(apostas)):
@@ -43,16 +51,15 @@ def gerar_opcoes(apostas,pesos):
     return opcoes
 
 
-apostas = ['[☺]','[♥]','[♬]','[☀]','[☎]','[☂]','[$]','[☆]']
-pesos = [3,3,3,3,3,3,1,1]
-
+pontos = 0
 moedas = 10
+
 menu_cn()
 print("")
 
 iniciar = input("Escolha uma opção: ")
 
-while iniciar != "1" and iniciar !="2":
+while iniciar != "1" and iniciar !="2" and iniciar!="3":
     print("opção invalida, escolha uma opção valida")
     menu_cn()
     iniciar = input("Escolha uma opção: ")
@@ -68,9 +75,9 @@ if iniciar == "1":
     print('SEU SALDO INICIAL É DE 10 MOEDAS, BOA SORTE!')
     while(iniciar=='1')and(moedas>0):
         print("")
-        tipoaposta=str.lower(input('Gostaria de apostar em Par ou Trinca?: '))
+        tipoaposta=str.lower(input('Gostaria de apostar em Trinca ou Par?: '))
         
-        if(tipoaposta=='par')or(tipoaposta=='trinca'):
+        if(tipoaposta=='trinca')or(tipoaposta=='par'):
             valoraposta=0
             while valoraposta==0:
                 try:
@@ -93,84 +100,112 @@ if iniciar == "1":
 
             if resultado=="trinca":
                 moedas=moedas+50
+                pontos=pontos+(50*valoraposta)
+                print("sorteando...")
+                time.sleep(2)
+                print(sort1)
+                time.sleep(2)
+                print(sort2)
+                time.sleep(3)
+                print(sort3)
+                time.sleep(2)
                 print("")
                 print("-----RESULTADO-----")
                 print("   ",sort1, sort2, sort3,"  ")
                 print("-------------------")
                 print("")
-                print('você ganhou 50 moedas com a trinca, o premio máximo, seu saldo é ',moedas,'moedas')
+                print('você ganhou 50 moedas com a trinca, o premio máximo, seu saldo é:',moedas,'moedas e',pontos,"pontos")
 
             elif resultado=="trincabonuscifrão":
-                moedas=moedas+65
+                moedas=moedas+80
+                pontos=pontos+(50*valoraposta)
+                print("sorteando...")
+                time.sleep(2)
+                print(sort1)
+                time.sleep(2)
+                print(sort2)
+                time.sleep(3)
+                print(sort3)
+                time.sleep(2)
                 print("")
                 print("-----RESULTADO-----")
                 print("   ",sort1, sort2, sort3,"  ")
                 print("-------------------")
                 print("")
-                print('você fez uma trinca com o cifrão da prosperidade, ganhou 50 moedas de premio + 15 moedas de bonus, seu saldo é ',moedas,'moedas')
+                print('você fez uma trinca com o cifrão da prosperidade, ganhou 50 moedas de premio + 30 moedas de bonus, seu saldo é:',moedas,"moedas e",pontos,"pontos")
 
-            elif resultado=="trincabonusestrela":
-                moedas=moedas+65
-                print("")
-                print("-----RESULTADO-----")
-                print("   ",sort1, sort2, sort3,"  ")
-                print("-------------------")
-                print("")
-                print('você fez uma trinca com a estrela da sorte, ganhou 50 moedas de premio + 15 moedas de bonus, seu saldo é ',moedas,'moedas')
 
             elif resultado=="par":
                 moedas=moedas+15
+                pontos=pontos+(15*valoraposta)
+                print("sorteando...")
+                time.sleep(2)
+                print(sort1)
+                time.sleep(2)
+                print(sort2)
+                time.sleep(3)
+                print(sort3)
+                time.sleep(2)
                 print("")
                 print("-----RESULTADO-----")
                 print("   ",sort1, sort2, sort3,"  ")
                 print("-------------------")
                 print("")
-                print('você ganhou 15 moedas, fez um par, seu saldo é ',moedas,'moedas')
+                print('você ganhou 15 moedas, fez um par, seu saldo é:',moedas,"moedas e",pontos,"pontos")
 
             elif resultado=="parbonuscifrão":
                 moedas=moedas+20
+                pontos=pontos+(20*valoraposta)
+                print("sorteando...")
+                time.sleep(2)
+                print(sort1)
+                time.sleep(2)
+                print(sort2)
+                time.sleep(3)
+                print(sort3)
+                time.sleep(2)
                 print("")
                 print("-----RESULTADO-----")
                 print("   ",sort1, sort2, sort3,"  ")
                 print("-------------------")
                 print("")
-                print('você ganhou 5 moedas de bonus com o cifrão da prosperidade + 15 moedas com um par, seu saldo é ',moedas,'moedas')
-
-            elif resultado=="parbonusestrela":
-                moedas=moedas+20
-                print("")
-                print("-----RESULTADO-----")
-                print("   ",sort1, sort2, sort3,"  ")
-                print("-------------------")
-                print("")
-                print('você ganhou 5 moedas de bonus com a estrela da sorte + 15 moedas com um par, seu saldo é ',moedas,'moedas')
+                print('você ganhou 10 moedas de bonus com o cifrão da prosperidade + 15 moedas com um par, seu saldo é:',moedas,"moedas e",pontos,"pontos")
                 
 
             elif resultado=="cifrão":
-                moedas=moedas+5
+                moedas=moedas+10
+                pontos=pontos+(10*valoraposta)
+                print("sorteando...")
+                time.sleep(2)
+                print(sort1)
+                time.sleep(2)
+                print(sort2)
+                time.sleep(3)
+                print(sort3)
+                time.sleep(2)
                 print("")
                 print("-----RESULTADO-----")
                 print("   ",sort1, sort2, sort3,"  ")
                 print("-------------------")
                 print("")
-                print('você ganhou 5 moedas de bonus com o cifrão da prosperidade seu saldo é ',moedas,'moedas')
+                print('você ganhou 10 moedas de bonus com o cifrão da prosperidade seu saldo é:',moedas,"moedas e",pontos,"pontos")
 
-            elif resultado=="estrela":
-                moedas=moedas+5
-                print("")
-                print("-----RESULTADO-----")
-                print("   ",sort1, sort2, sort3,"  ")
-                print("-------------------")
-                print("")
-                print('você ganhou 5 moedas de bonus com a estrela da sorte seu saldo é ',moedas,'moedas')
 
             elif resultado=="perdeu":
+                print("sorteando...")
+                time.sleep(2)
+                print(sort1)
+                time.sleep(2)
+                print(sort2)
+                time.sleep(3)
+                print(sort3)
+                time.sleep(2)
                 print("")
                 print("-----RESULTADO-----")
                 print("   ",sort1, sort2, sort3,"  ")
                 print("-------------------")
                 print("")
-                print('infelizmente você não acertou sua aposta, seu saldo é ',moedas,'moedas')
+                print('infelizmente você não acertou sua aposta, seu saldo é:',moedas,"moedas e",pontos,"pontos")
 
 
 
@@ -179,10 +214,21 @@ if iniciar == "1":
         if moedas==0:
             print("você perdeu tudo!")
         elif moedas>0:
-            iniciar=str.lower(input('para continuar digite 1 e tecle enter ou apenas tecle enter para sair: '))
+            iniciar=str.lower(input('Tecle [1] para continuar ou [3] para sair:'))
+    if pontos > 0:
+        nome = input("Informe seu nome para nosso registro de jogadores:")
+        arquivo = open('registro.txt', 'a')
+        arquivo.write("jogador: ")
+        arquivo.write(nome)
+        arquivo.write(" | Pontos: ")
+        arquivo.write(str(pontos))
+        arquivo.write("\n")
+
+        arquivo.close()
+        
         
     else:
         print("")
-        print('seu saldo final foi:%i moedas'%moedas)
+        print('seu saldo final foi:%i moedas'%moedas,"e",pontos,"pontos")
         
 print('Até a proxima!')            
