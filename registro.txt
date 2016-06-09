@@ -4,3 +4,4 @@ jogador: João | Pontos: 30
 jogador: José | Pontos: 30
 jogador: Zuilma | Pontos: 20
 jogador: Zoroastro | Pontos: 100
+jogador: Fracisco | Pontos: 75
