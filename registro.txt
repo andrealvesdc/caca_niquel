@@ -1,2 +1,8 @@
 
-jogador: Almir | Pontos: 30
+jogador: Almir | Pontos: 20
+jogador: Alice | Pontos: 30
+jogador: João | Pontos: 30
+jogador: José | Pontos: 30
+jogador: Zuilma | Pontos: 20
+jogador: Zoroastro | Pontos: 100
+jogador: Frncisco | Pontos: 100
