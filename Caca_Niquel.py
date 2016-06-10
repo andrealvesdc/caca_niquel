@@ -1,20 +1,12 @@
 import random
-import time
 import verificar_apostas
+import dificulta_bonus
 from menu import *
 from ajuda import *
 from exibir_sorteio import *
 
 apostas = ['[☺]','[♥]','[♬]','[☀]','[☎]','[☂]','[$]']
 pesos = [2,2,2,2,2,2,1]
-       
-def gerar_opcoes(apostas,pesos):
-    opcoes = []
-    for i in range(len(apostas)):
-        for peso in range(pesos[i]):
-            opcoes.append(apostas[i])
-    return opcoes
-
 pontos = 0
 moedas = 10
 arquivo = open("registro.txt")
@@ -37,6 +29,8 @@ if iniciar == "2":
         iniciar = input("Digite uma opção válida, [1] para jogar ou [3] para sair:")
 
 elif iniciar == "4":
+    print("")
+    print("REGISTRO DE JOGADORES:")
     open("registro.txt", "r")
     print(arquivo.read())
 
@@ -52,24 +46,29 @@ if iniciar == "1":
     print('SEU SALDO INICIAL É DE 10 MOEDAS, BOA SORTE!')
     while(iniciar=='1')and(moedas>0):
         print("")
-        tipoaposta=str.lower(input('Gostaria de apostar em Trinca ou Par?: '))
-        while tipoaposta!="trinca" and tipoaposta!="par":
-            tipoaposta=str.lower(input("Informe uma aposta válida, digite Trinca ou Par?:"))
+        tipoaposta=str.lower(input('Digite [T] para apostar trinca ou [P} para apostar par: '))
+        while tipoaposta!="t" and tipoaposta!="p":
+            tipoaposta=str.lower(input("Informe uma aposta válida, digite [T] para trinca ou [P] para par:"))
         
-        if(tipoaposta=="trinca")or(tipoaposta=="par"):
+        if tipoaposta == "t" or tipoaposta == "p":
             valoraposta=0
-            while valoraposta==0:
+            while valoraposta == 0:
                 try:
-                    valoraposta=int(input('Quanto deseja apostar:? '))
+                    valoraposta=int(input('Quanto deseja apostar?: '))
                 except ValueError:
-                    print("Informe um valor valido")
+                    print("Informe um valor válido!")
                 
-            while(valoraposta>moedas)or(valoraposta<=0):
-                print("Atenção você tem %i moedas!" % moedas)
-                valoraposta=int(input('Faça uma aposta valida: '))
+            while valoraposta > moedas or valoraposta < 0:
+                print("Atenção: você não pode apostar nem mais, nem menos moedas do que possui")
+                print("Nem digitar nada além de números inteiros positivos")
+                print("Você tem:",moedas,"moedas")
+                try:
+                   valoraposta=int(input("Quanto deseja apostar?: "))
+                except:
+                    print("Informe um valor válido!")
                 
             moedas = moedas-valoraposta
-            opcoes = gerar_opcoes(apostas,pesos)
+            opcoes = dificulta_bonus.gerar_opcoes(apostas,pesos)
 
             sort1=random.choice(opcoes)
             sort2=random.choice(opcoes)
@@ -110,9 +109,11 @@ if iniciar == "1":
             elif resultado=="perdeu":
                 sorteio= exibir_resultado(resultado,sort1,sort2,sort3)
                 print('infelizmente você não acertou sua aposta, seu saldo é:',moedas,"moedas e",pontos,"pontos")
+                print('')
 
         if moedas==0:
             print("você perdeu tudo!")
+            print("")
 
         elif moedas > 0:
             iniciar=input('Tecle [1] para continuar ou [3] para sair:')
@@ -120,6 +121,7 @@ if iniciar == "1":
                 iniciar=input('Informe uma opção valida, [1] para continuar ou [3] para sair:')
 
     if pontos > 0:
+        print("")
         nome = input("Informe seu nome para nosso registro de jogadores:")
         arquivo = open('registro.txt', 'a')
         arquivo.write("jogador: ")
@@ -129,7 +131,13 @@ if iniciar == "1":
         arquivo.write("\n")
 
         arquivo.close()
-    
+
+    print("")
+    print("Registro de Jogadores:")
+    arquivo = open('registro.txt', 'r')
+    print(arquivo.read())
+
+    arquivo.close()
     print("")
     print('seu saldo final foi:%i moedas'%moedas,"e",pontos,"pontos")
 

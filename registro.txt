@@ -6,7 +6,3 @@ jogador: Zuilma | Pontos: 20
 jogador: Zoroastro | Pontos: 100
 jogador: Fracisco | Pontos: 75
 jogador: Chico | Pontos: 30
-Jogador: Zaza | Pontos: 100
-Jogador: Zezinho | Pontos: 30
-Jogador: Ruindade | Pontos: 10
-Jogador: João Grilo | Pontos: 20
