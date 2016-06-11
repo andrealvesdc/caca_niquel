@@ -46,7 +46,7 @@ if iniciar == "1":
     print('SEU SALDO INICIAL É DE 10 MOEDAS, BOA SORTE!')
     while(iniciar=='1')and(moedas>0):
         print("")
-        tipoaposta=str.lower(input('Digite [T] para apostar trinca ou [P} para apostar par: '))
+        tipoaposta=str.lower(input('Digite [T] para apostar trinca ou [P] para apostar par: '))
         while tipoaposta!="t" and tipoaposta!="p":
             tipoaposta=str.lower(input("Informe uma aposta válida, digite [T] para trinca ou [P] para par:"))
         
